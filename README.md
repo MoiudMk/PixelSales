@@ -5,3 +5,4 @@
 ## PixelSales v2
 
 تطبيق مبيعات يعمل على Android.
+Initial PixelSales project
