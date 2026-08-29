@@ -47,15 +47,47 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return Scaffold(appBar:AppBar(title:const Text('المنتجات')),
       body:Column(children:[
         Padding(padding:const EdgeInsets.all(12),child:TextField(onChanged:(v)=>setState(()=>search=v),decoration:const InputDecoration(prefixIcon:Icon(Icons.search),hintText:'بحث عن منتج'))),
-        Expanded(child:list.isEmpty?const Center(child:Text('لا توجد منتجات')):ListView.builder(itemCount:list.length,itemBuilder:(_,i){
-          final p=list[i]; return Card(margin:const EdgeInsets.symmetric(horizontal:12,vertical:5),child:ListTile(
-            leading:const CircleAvatar(child:Icon(Icons.inventory_2_outlined)),
-            title:Text(p['name']),subtitle:Text('المخزون: ${p['quantity']}'),
-            trailing:Row(mainAxisSize:MainAxisSize.min,children:[
-              Text('${(p['price'] as num).toStringAsFixed(2)} د.ل'),
-              IconButton(onPressed:()=>form(p),icon:const Icon(Icons.edit_outlined)),
-              IconButton(onPressed:()async{await DatabaseHelper.instance.deleteProduct(p['id']);load();},icon:const Icon(Icons.delete_outline)),
-            ]));})),
-      ]),floatingActionButton:FloatingActionButton.extended(onPressed:()=>form(),icon:const Icon(Icons.add),label:const Text('إضافة منتج')));
-  }
-}
+        Expanded(
+  child: list.isEmpty
+      ? const Center(child: Text('لا توجد منتجات'))
+      : ListView.builder(
+          itemCount: list.length,
+          itemBuilder: (_, i) {
+            final p = list[i];
+
+            return Card(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 5,
+              ),
+              child: ListTile(
+                leading: const CircleAvatar(
+                  child: Icon(Icons.inventory_2_outlined),
+                ),
+                title: Text(p['name']),
+                subtitle: Text('المخزون: ${p['quantity']}'),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      '${(p['price'] as num).toStringAsFixed(2)} د.ل',
+                    ),
+                    IconButton(
+                      onPressed: () => form(p),
+                      icon: const Icon(Icons.edit_outlined),
+                    ),
+                    IconButton(
+                      onPressed: () async {
+                        await DatabaseHelper.instance
+                            .deleteProduct(p['id']);
+                        load();
+                      },
+                      icon: const Icon(Icons.delete_outline),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+),
