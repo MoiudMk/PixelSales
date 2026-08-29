@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const PixelSalesApp());
@@ -17,31 +18,9 @@ class PixelSalesApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.blue,
         ),
+        fontFamily: 'Arial',
       ),
-      home: const HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('PixelSales'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'منظومة PixelSales',
-          style: TextStyle(
-            fontSize: 26,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
