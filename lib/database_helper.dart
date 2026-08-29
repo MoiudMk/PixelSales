@@ -74,5 +74,24 @@ class DatabaseHelper {
       where: 'id = ?',
       whereArgs: [id],
     );
+  Future<int> updateProduct({
+    required int id,
+    required String name,
+    required double price,
+    required int quantity,
+  }) async {
+    final db = await database;
+
+    return await db.update(
+      'products',
+      {
+        'name': name,
+        'price': price,
+        'quantity': quantity,
+      },
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
   }
 }
