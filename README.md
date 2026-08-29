@@ -1,2 +1,0 @@
-# PixelSales
-PixelSales Offline
