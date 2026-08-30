@@ -9,9 +9,12 @@ workflows:
     scripts:
       - name: Generate android platform folder
         script: |
+          set -e
           if [ ! -d "android" ]; then
-            flutter create --platforms=android --org com.pixel .
+            flutter create --platforms=android --project-name pixelsales --org com.pixel .
           fi
+          echo "Checking android folder was created:"
+          ls -la android
       - name: Get packages
         script: flutter pub get
       - name: Analyze
